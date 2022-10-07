@@ -1,5 +1,6 @@
 package oop.uaslp.objetos;
 
+import oop.uaslp.objetos.listInner.Iterator;
 import oop.uaslp.objetos.listInner.List;
 
 public class LinkedList implements List {
@@ -128,7 +129,7 @@ public class LinkedList implements List {
 
     //Method added by student
     public LinkedListIterator getIterator(){
-        return new LinkedListIterator(this);
+        return new LinkedListIterator();
     }
 
     public int getSize()
@@ -171,6 +172,27 @@ public class LinkedList implements List {
             this.data=data;
         }
 
+    }
+    private class LinkedListIterator implements Iterator {
+        private Node current;
+
+        //Constructor
+        public LinkedListIterator(){
+            this.current=head;
+        }
+
+        //Methods with implements
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+
+        public String next() {
+            String data = current.data;
+            current=current.next;
+            return data;
+        }
     }
 
 }
